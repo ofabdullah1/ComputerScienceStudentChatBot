@@ -1,12 +1,17 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-     <p>If you are seeing this, you are authenticated.</p>
+    <chat-box></chat-box>
+    <input-message />
   </div>
 </template>
 
 <script>
+import InputMessage from '../components/InputMessage.vue';
+import ChatBox from '../components/ChatBox.vue';
+
 export default {
-  name: "home"
+  name: "home",
+  components: { InputMessage, ChatBox },
 };
+
 </script>

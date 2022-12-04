@@ -24,6 +24,12 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 )
 
+CREATE TABLE quotes (
+	quote_id int IDENTITY(1,1) NOT NULL,
+	saying varchar(500) NOT NULL,
+	originator varchar(50) NOT NULL
+)
+
 --populate default data
 
 -- Robert/password
