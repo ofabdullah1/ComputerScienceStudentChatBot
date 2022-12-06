@@ -1,14 +1,14 @@
 ﻿namespace Capstone.Models
 {
-    public class Response
+    public class UserMessage
     {
         public string Message { get; set; }
 
-        public Response(string _message)
+        public UserMessage(string _message)
         {
             Message = _message;
         }
-        public Response()
+        public UserMessage()
         {
 
         }

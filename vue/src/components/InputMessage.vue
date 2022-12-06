@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import MessageService from '../services/MessageService'
 
 export default {
   name: "input-message",
@@ -23,7 +24,7 @@ export default {
   methods: {
     saveMessage() {
       if (this.$store.state.message) {
-        //call server side method
+        MessageService.sendMessage();
       }
       else {
        this.$store.commit("SAVE_MESSAGE", this.userMessage);

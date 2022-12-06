@@ -21,8 +21,9 @@ namespace Capstone.Controllers
             this.quoteDAO = quoteDAO;
         }
         [HttpGet]
-        public ActionResult<List<Quote>> GetQuotes()
+        public ActionResult<List<Quote>> GetQuotes(string keyword)
         {
+
             return Ok(quoteDAO.GetQuotes());
         }
     }

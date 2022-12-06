@@ -1,8 +1,8 @@
 <template>
   <div>
     <p id="message">{{ message }}</p>
-    <h2>{{ quote.message }}</h2>
-    <h3>{{ quote.author }}</h3>
+    <p>{{ quote.message }}</p>
+    <p>{{ quote.author }}</p>
   </div>
 </template>
 
