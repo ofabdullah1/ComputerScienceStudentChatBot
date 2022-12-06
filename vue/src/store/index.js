@@ -20,7 +20,9 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    message: ""
+    message: "",
+    quotes:[]
+
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -41,6 +43,10 @@ export default new Vuex.Store({
     },
     SAVE_MESSAGE(state, message) {
       state.message = message;
+    },
+    DISPLAY_QUOTES(state, quotes){
+      state.quotes = quotes;
     }
+
   }
 })

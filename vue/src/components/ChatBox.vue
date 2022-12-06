@@ -16,6 +16,7 @@
         <li>Positions</li>
         <li>I'm not sure</li>
       </ul>
+      <p>At any point you can type HELP for additional assistance.</p>
     </div>
   </div>
 </template>
