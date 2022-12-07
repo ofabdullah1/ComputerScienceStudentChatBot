@@ -1,6 +1,7 @@
 ﻿using Capstone.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,6 +32,8 @@ namespace Capstone.Utilities
         }
         public static string ReturnGreeting(UserMessage message)
         {
+            message.Message = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(message.Message.ToLower());
+
             return $"Hello {message.Message}!\n" +
                 $"I’m TE-bot and I’m here to help you with your Tech Elevator needs. \n" +
                 $"What can I help you with today: \n" +
@@ -44,10 +47,10 @@ namespace Capstone.Utilities
         public static string ReturnHelp(UserMessage message)
         {
             return $"Ok, Here are some ways you can phrase your questions: " +
-                $"\"I need help with X.\" " +
-                $"\"Where can I learn about X?\" " +
-                $"\"I don’t understand X.\" " +
-                $"\"What is X?\" " +
+                $"\"I need help with X.\", " +
+                $"\"Where can I learn about X?\", " +
+                $"\"I don’t understand X.\", " +
+                $"\"What is X?\", " +
                 $"or you can try using words or phrases. ";
         }
 
