@@ -8,6 +8,6 @@
         </div>
     </div>
     <router-view />
-    <footer>Copyright &copy; 2022, Team Oscar</footer>
+    <footer id="footer">Copyright &copy; 2022, Team Oscar</footer>
   </div>
 </template>

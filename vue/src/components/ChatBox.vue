@@ -1,29 +1,58 @@
 <template>
-  <div>
-    <div class="greet1">
+  <div class="chat-box-container">
+    <div class="server">
       <p>Hi! My name is TE Bot.</p>
       <p>What's your name?</p>
     </div>
-    <div class="greet2">
-      <p>
-        Hello {{ this.$store.state.message }}! I’m TE-bot and I’m here to help
-        you with your Tech Elevator needs. What can I help you with today?
-      </p>
-      <ul>
-        <li>Curriculum</li>
-        <li>Pathway</li>
-        <li>Motivation</li>
-        <li>Positions</li>
-        <li>I'm not sure</li>
-      </ul>
-      <p>At any point you can type HELP for additional assistance.</p>
-    </div>
+    <ul class="chat-box-list">
+      <li
+        v-for="(message, index) in messages"
+        v-bind:key="index"
+        :class="message.author"
+      >
+        <p>
+          <span>{{ message.text }}</span>
+        </p>
+      </li>
+    </ul>
+    <input
+      type="text"
+      v-model="userMessage"
+      v-on:keyup.enter="sendMessage"
+      class="chat-input"
+    />
+    <button v-on:click="sendMessage" class="send-button">Send</button>
   </div>
 </template>
 
 <script>
+import MessageService from "../services/MessageService.js";
+
 export default {
   name: "chat-box",
+  data: () => {
+    return {
+      messages: [],
+      userMessage: "",
+    };
+  },
+  methods: {
+    sendMessage() {
+      this.messages.push({
+        text: this.userMessage,
+        author: "client",
+      })
+      this.userMessage = ""
+
+      MessageService.receiveMessage()
+      .then((response) => {
+        this.messages.push({
+          text: response.data,
+          author: "server",
+        });
+      });
+    },
+  },
 };
 </script>
 

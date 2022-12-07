@@ -1,18 +1,15 @@
 <template>
   <div class="home">
-    <chat-box></chat-box>
-    ??????????????????????
-    <input-message />
+    <chat-box />
   </div>
 </template>
 
 <script>
-import InputMessage from "../components/InputMessage.vue";
 import ChatBox from "../components/ChatBox.vue";
 
 export default {
   name: "home",
-  components: { InputMessage, ChatBox,},
+  components: { ChatBox},
   methods: {
   }
 };

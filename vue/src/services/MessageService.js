@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const path = '/quote';
+const path = '/message';
 
 export default{
 
-    sendMessage(){
-        return axios.post(path);
+    sendMessage(message){
+        return axios.post(path, message);
     }
 }
