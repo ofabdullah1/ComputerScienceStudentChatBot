@@ -44,11 +44,11 @@ namespace Capstone.Utilities
         public static string ReturnHelp(UserMessage message)
         {
             return $"Ok, Here are some ways you can phrase your questions: " +
-                $"I need help with X." +
-                $"Where can I learn about X?" +
-                $"I don’t understand X." +
-                $"What is X?" +
-                $"or you can try using words or phrases.";
+                $"\"I need help with X.\" " +
+                $"\"Where can I learn about X?\" " +
+                $"\"I don’t understand X.\" " +
+                $"\"What is X?\" " +
+                $"or you can try using words or phrases. ";
         }
 
     }
