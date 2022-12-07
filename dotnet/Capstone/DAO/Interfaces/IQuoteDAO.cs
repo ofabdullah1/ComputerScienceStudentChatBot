@@ -5,7 +5,7 @@ namespace Capstone.DAO.Interfaces
 {
     public interface IQuoteDAO
     {
-        List<Quote> GetQuotes();
+        Quote GetQuote();
        
     }
 }

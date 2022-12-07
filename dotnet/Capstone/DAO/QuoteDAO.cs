@@ -12,28 +12,27 @@ namespace Capstone.DAO
     {
         private string connectionString;
 
-        private string sqlGetQuotes = "SELECT * FROM quotes;";
+        private string sqlGetQuote = "SELECT TOP 1 FROM quotes ORDER BY newid();";
 
         public QuoteDAO(string connectionString)
         {
             this.connectionString = connectionString;
         }
-        public List<Quote> GetQuotes()
+        public Quote GetQuote()
         {
-            List<Quote> quotes = new List<Quote>();
+            Quote quote = new Quote();
             try
             {
                 using (SqlConnection conn= new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(sqlGetQuotes, conn);
+                    SqlCommand cmd = new SqlCommand(sqlGetQuote, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        Quote quote = ReaderToQuote(reader);
-                        quotes.Add(quote);
+                        quote = ReaderToQuote(reader);
 
                     }
 
@@ -42,9 +41,9 @@ namespace Capstone.DAO
             }
             catch (Exception ex)
             {
-                quotes = new List<Quote>();
+                quote = new Quote();
             }
-            return quotes;
+            return quote;
         }
         private Quote ReaderToQuote(SqlDataReader reader)
         {

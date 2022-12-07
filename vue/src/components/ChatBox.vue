@@ -42,15 +42,16 @@ export default {
         text: this.userMessage,
         author: "client",
       })
-      this.userMessage = ""
-
-      MessageService.receiveMessage()
+      const bodyMessage = {Message: this.userMessage}
+      MessageService.sendMessage(bodyMessage)
       .then((response) => {
         this.messages.push({
           text: response.data,
           author: "server",
         });
       });
+      //MessageService.receiveMessage()
+      this.userMessage = ""
     },
   },
 };

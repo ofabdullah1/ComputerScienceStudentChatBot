@@ -1,4 +1,5 @@
-﻿using Capstone.Models;
+﻿using Capstone.DAO.Interfaces;
+using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,19 @@ namespace Capstone.Controllers
     [ApiController]
     public class MessageController : Controller
     {
+        private IQuoteDAO quoteDAO;
+
+        public MessageController(IQuoteDAO quoteDAO)
+        {
+            this.quoteDAO = quoteDAO;
+        }
+
         [HttpPost()]
-        public ActionResult<string> RetrieveMessage(string message)
-        { 
-            return Ok(message);
+        public ActionResult<string> RetrieveMessage(UserMessage message)
+        {
+
+
+            return message.Message; //"Hello World";
         }
     }
 }
