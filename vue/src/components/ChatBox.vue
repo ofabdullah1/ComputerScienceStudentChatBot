@@ -42,7 +42,8 @@ export default {
         text: this.userMessage,
         author: "client",
       })
-      const bodyMessage = {Message: this.userMessage}
+      const bodyMessage = {Message: this.userMessage,
+      Context: ""}
       MessageService.sendMessage(bodyMessage)
       .then((response) => {
         this.messages.push({

@@ -12,7 +12,7 @@ namespace Capstone.DAO
     {
         private string connectionString;
 
-        private string sqlGetQuote = "SELECT TOP 1 FROM quotes ORDER BY newid();";
+        private string sqlGetQuote = "SELECT TOP 1 * FROM quotes ORDER BY newid();";
 
         public QuoteDAO(string connectionString)
         {
