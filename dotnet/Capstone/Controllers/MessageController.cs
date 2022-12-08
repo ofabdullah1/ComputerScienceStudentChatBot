@@ -40,6 +40,9 @@ namespace Capstone.Controllers
                     Quote quote = quoteDAO.GetQuote();
                     returnMessage.Message = $"{quote.Message} - {quote.Author}";
                     break;
+                case "error":
+                    returnMessage.Message = ResponseMethods.ErroMessage(message);
+                    break;
             }
             return returnMessage.Message;
         }

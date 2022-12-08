@@ -11,7 +11,7 @@
         :class="message.author"
       >
         <p>
-          <span>{{ message.text }}</span>
+          <span v-html = "message.text" >{{ message.text }}</span>
         </p>
       </li>
     </ul>
@@ -43,11 +43,14 @@ export default {
         author: "client",
       })
       const bodyMessage = {Message: this.userMessage,
-      Context: ""}
+      context: this.$store.state.context}
+
       MessageService.sendMessage(bodyMessage)
       .then((response) => {
+        const serverMessage = response.data;
+        this.$store.commit("UPDATE_CONTEXT",serverMessage.context);
         this.messages.push({
-          text: response.data,
+          text: response.data, 
           author: "server",
         });
       });

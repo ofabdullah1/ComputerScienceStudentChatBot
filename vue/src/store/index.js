@@ -20,6 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    context: "greet",
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +38,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    UPDATE_CONTEXT(state, context){
+      state.context = context;
     }
 
   }
