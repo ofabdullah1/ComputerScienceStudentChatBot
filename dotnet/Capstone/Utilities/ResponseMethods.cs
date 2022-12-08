@@ -42,10 +42,10 @@ namespace Capstone.Utilities
             return $"<p>Hello {message.Message}!</br>" +
                 $"I’m TE-bot and I’m here to help you with your Tech Elevator needs. </br>" +
                 $"What can I help you with today:  </p>" +
-                $"<ul> <li>Curriculum</li>  </br>" +
-                $"<li>Pathway</li> </br>" +
-                $"<li>Motivation</li>  </br>" +
-                $"<li>Positions</li>  </ul>" +
+                $"<li>Curriculum</li> " +
+                $"<li>Pathway</li>" +
+                $"<li>Motivation</li>" +
+                $"<li>Positions</li>" +
                 $"<p>At any point you can type \"help\" for additional assistance.</p>";
 
         }
