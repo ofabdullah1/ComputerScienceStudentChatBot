@@ -56,7 +56,6 @@ export default {
           author: "server",
         });
       });
-      //MessageService.receiveMessage()
       this.userMessage = ""
     },
   },

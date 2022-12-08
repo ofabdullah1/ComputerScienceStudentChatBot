@@ -28,6 +28,10 @@ namespace Capstone.Utilities
             {
                 message.Context = "quote";
             }
+            else if (message.Message.Contains("curriculum"))
+            {
+                message.Context = "curriculum";
+            }
             else
             {
                 message.Context = "error";
@@ -52,6 +56,7 @@ namespace Capstone.Utilities
 
         public static string ReturnHelp(UserMessage message)
         {
+            message.Context = "";
             return $"<p>Ok, Here are some ways you can phrase your questions:" +
                 $"<ul> <li>I need help with X</li>  " +
                 $"<li>Where can I learn about X</li>" +

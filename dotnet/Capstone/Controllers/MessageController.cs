@@ -14,10 +14,12 @@ namespace Capstone.Controllers
     public class MessageController : Controller
     {
         private IQuoteDAO quoteDAO;
+        private ICurriculumDAO curriculumDAO;
 
-        public MessageController(IQuoteDAO quoteDAO)
+        public MessageController(IQuoteDAO quoteDAO, ICurriculumDAO curriculumDAO)
         {
             this.quoteDAO = quoteDAO;
+            this.curriculumDAO = curriculumDAO;
         }
 
         [HttpPost()]
@@ -39,6 +41,11 @@ namespace Capstone.Controllers
                 case "quote":
                     Quote quote = quoteDAO.GetQuote();
                     returnMessage.Message = $"{quote.Message} - {quote.Author}";
+                    break;
+                case "curriculum":
+                    Curriculum curriculum = curriculumDAO.GetCurriculumResponse();
+                    message.Context = "curriculum";
+                    returnMessage.Message = $"{curriculum.Response}";
                     break;
                 case "error":
                     returnMessage.Message = ResponseMethods.ErroMessage(message);
