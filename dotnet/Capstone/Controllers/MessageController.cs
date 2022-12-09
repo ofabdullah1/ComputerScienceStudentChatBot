@@ -23,7 +23,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPost()]
-        public ActionResult<string> RetrieveMessage(UserMessage message)
+        public ActionResult<UserMessage> RetrieveMessage(UserMessage message)
         {
             message = ResponseMethods.SetLowerCase(message);
             message = ResponseMethods.SetContext(message);
@@ -42,16 +42,18 @@ namespace Capstone.Controllers
                     Quote quote = quoteDAO.GetQuote();
                     returnMessage.Message = $"{quote.Message} - {quote.Author}";
                     break;
-                case "curriculum":
-                    Curriculum curriculum = curriculumDAO.GetCurriculumResponse();
-                    message.Context = "curriculum";
+                case "curriculum1":
+                    returnMessage = ResponseMethods.StartCurriculumHelp(message);
+                    break;
+                case "curriculum2":
+                    Curriculum curriculum = curriculumDAO.GetCurriculumResponse(message);
                     returnMessage.Message = $"{curriculum.Response}";
                     break;
                 case "error":
-                    returnMessage.Message = ResponseMethods.ErroMessage(message);
+                    returnMessage.Message = ResponseMethods.ErrorMessage(message);
                     break;
             }
-            return returnMessage.Message;
+            return returnMessage;
         }
     }
 }
