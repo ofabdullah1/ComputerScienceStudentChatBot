@@ -20,11 +20,11 @@ namespace Capstone.Utilities
             {
                 message.Context = "greet";
             }
-            else if (message.Message == "help")
+            else if (message.Message == "help"|| message.Message=="help me"|| message.Message=="i need help")
             {
                 message.Context = "help";
             }
-            else if (message.Message.Contains("quote") || message.Message.Contains("motivation"))
+            else if (message.Message.Contains("quote") || message.Message.Contains("motivation")|| message.Message.Contains("motivate"))
             {
                 message.Context = "quote";
             }
@@ -46,10 +46,10 @@ namespace Capstone.Utilities
             return $"<p>Hello {message.Message}!</br>" +
                 $"I’m TE-bot and I’m here to help you with your Tech Elevator needs. </br>" +
                 $"What can I help you with today:  </p>" +
-                $"<li>Curriculum</li> " +
-                $"<li>Pathway</li>" +
-                $"<li>Motivation</li>" +
-                $"<li>Positions</li>" +
+                $"<li style=\"list-style:none\">Curriculum</li> " +
+                $"<li style=\"list-style:none\">Pathway</li>" +
+                $"<li style=\"list-style:none\">Motivation</li>" +
+                $"<li style=\"list-style:none\">Positions</li>" +
                 $"<p>At any point you can type \"help\" for additional assistance.</p>";
 
         }
@@ -58,10 +58,10 @@ namespace Capstone.Utilities
         {
             message.Context = "";
             return $"<p>Ok, Here are some ways you can phrase your questions:" +
-                $"<ul> <li>I need help with X</li>  " +
-                $"<li>Where can I learn about X</li>" +
-                $"<li>I don’t understand X</li> " +
-                $"<li>What is X</li> </ul></br>" +
+                $" <li style=\"list-style:none\">I need help with X</li>  " +
+                $"<li style=\"list-style:none\">Where can I learn about X</li>" +
+                $"<li style=\"list-style:none\">I don’t understand X</li> " +
+                $"<li style=\"list-style:none\">What is X</li> </br>" +
                 $"or you can try using words or phrases.</p> ";
         }
 

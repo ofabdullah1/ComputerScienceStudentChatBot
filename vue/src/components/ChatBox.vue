@@ -64,46 +64,51 @@ export default {
 
 <style>
 .chat-box-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: scroll;
-  height: 71vh;
+  width: 80%;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: inherit;
-   background:#CEF0FD ;
-   border-radius: 20px;
+  background: #CEF0FD;
+  border-radius: 20px;
 }
 .server {
   display: flex;
   flex-direction: column;
   justify-content: left;
   height: max-content;
-  background-color: #0495D7 ;
+  background-color: #0495D7;
   padding: 10px;
-  max-width: 15%;
+  max-width: 30%;
   border-radius: 40px;
   margin-left: 20px;
   margin-top: 20px;
   inline-size: max-content;
-   color: #fff;
-   border-style: solid;
-   border-color: black;
+  color: #fff;
+  border-style: solid;
+  border-color: black;
 }
 .client {
-  background-color:#5B42F3;
+  grid-area: chat;
+  background-color: #5B42F3;
   border-radius: 40px;
-  width: 18%;
+  width: 25%;
   margin-top: 20px;
   padding: 10px;
   position: relative;
-  left: 80%;
+  left: 71%;
   list-style-type: none;
-     border-style: solid;
-   border-color: black;
+  border-style: solid;
+  border-color: black;
 }
 .chat-box-list > li {
   text-align: center;
   height: auto;
 }
-.chat-box-list{
+.chat-box-list {
   padding: 0px;
 }
 .client > p {
@@ -112,20 +117,21 @@ export default {
   overflow-y: hidden;
   margin: 0 auto;
   width: 90%;
-   color: #fff;
+  color: #fff;
 }
 #textbox {
+  grid-area: input;
   text-align: center;
-  position: absolute;
   width: 100%;
-  bottom: 50px;
   margin-bottom: 15px;
+  position: sticky;
 }
 .chat-input {
   position: -webkit-sticky;
   position: sticky;
   padding: 3px;
-  width: 500px;
+  height: 100%;
+  width: 40%;
   border-radius: 40px;
   border: transparent;
 }

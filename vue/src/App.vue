@@ -4,7 +4,7 @@
       <img id="robot" src="https://img.freepik.com/premium-vector/cute-robot-waving-hand-cartoon-illustration_138676-2744.jpg?w=740" alt="Picture of a robot">
       <h1 class="title">Welcome to the TE Digital Assistant</h1>
       <div id="nav">
-        <router-link class="button" v-bind:to="{name:'home'}">Home</router-link> |
+        <router-link class="button" v-bind:to="{name:'home'}">Home</router-link> 
            <router-link class="button" v-bind:to="{name:'about'}">About</router-link>
         </div>
     </div>
@@ -24,15 +24,21 @@
     "footer";
   row-gap: 10px;
   column-gap: 10px;
-  height: 98vh;
-  background-color:#7A7FB1;
+  background-image: url("https://img.freepik.com/free-photo/motherboard-circuit-technology-background-gradient-blue_53876-124654.jpg?size=626&ext=jpg&ga=GA1.2.1987393692.1670518260");
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: inherit;
+  height: 100%;
+  background-color: #7A7FB1;
   padding: 0px;
   margin: 0px;
 }
 #home {
   grid-area: chatbot;
+  display: flex;
+  justify-content: center;
   border: 5px solid transparent;
-  height: 600px;
+  height: 70vh;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -53,12 +59,13 @@
   align-items: center;
   font-family: "Audiowide", sans-serif;
   text-align: end;
-   color: black;
+  color: black;
 }
 #footer {
   grid-area: footer;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 20%;
 }
 #nav {

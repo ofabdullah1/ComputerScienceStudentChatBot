@@ -100,12 +100,24 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('Nancy','Yh
 
 GO
 
+declare @bob varchar(150)
+
+declare @tom varchar(150)
+
+set @bob = 'method'
+set @tom = '%' + @bob + '%'
+
+SELECT * FROM curriculum 
+JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
+JOIN keywords k ON k.keyword_id = ck.keyword_id
+WHERE keyword like @tom
+
+SELECT response FROM curriculum 
+JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
+JOIN keywords k ON k.keyword_id = ck.keyword_id
+WHERE keyword like '%'+'method'+'%'
+
+--SELECT * FROM keywords WHERE keyword CONTAINS 'method'
 
 
---SELECT * FROM curriculum 
---JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
---JOIN keywords k ON k.keyword_id = ck.keyword_id
---WHERE keyword = 'method';
 
-
---SELECT * FROM keywords WHERE CONTAINS (keyword, 'method')
