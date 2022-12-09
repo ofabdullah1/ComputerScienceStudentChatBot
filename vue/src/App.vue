@@ -95,6 +95,7 @@
   white-space: nowrap;
   cursor: pointer;
   margin: 80px 30px 65px 20px;
+  box-shadow: 5px 5px 5px black;
 }
 #robot {
   grid-area: robot;
