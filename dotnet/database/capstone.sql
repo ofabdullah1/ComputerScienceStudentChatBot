@@ -104,18 +104,19 @@ declare @bob varchar(150)
 
 declare @tom varchar(150)
 
-set @bob = 'method'
+
 set @tom = '%' + @bob + '%'
 
 SELECT * FROM curriculum 
 JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
 JOIN keywords k ON k.keyword_id = ck.keyword_id
-WHERE keyword like @tom
+WHERE keyword  @tom
 
+set @bob = 'method'
 SELECT response FROM curriculum 
 JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
 JOIN keywords k ON k.keyword_id = ck.keyword_id
-WHERE keyword like '%'+'method'+'%'
+WHERE 'bool' LIKE keyword
 
 --SELECT * FROM keywords WHERE keyword CONTAINS 'method'
 

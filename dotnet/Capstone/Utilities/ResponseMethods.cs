@@ -86,6 +86,19 @@ namespace Capstone.Utilities
             return returnMessage;
         }
 
+        public static string StopCurriculumHelp(UserMessage message)
+        {
+            if(message.Message.Contains("done"))
+            {
+                message.Context = "";
+            }
+            else
+            {
+                message.Context = "curriculum1";
+            }
+            return message.Context;
+        }
+
         public static string ErrorMessage(UserMessage message)
         {
             return $"I'm sorry I don't understand.</br>Please try again.";

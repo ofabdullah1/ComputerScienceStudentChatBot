@@ -49,10 +49,8 @@ export default {
 
       MessageService.sendMessage(bodyMessage)
       .then((response) => {
-        console.log(response.data.context)
         const serverMessage = response.data
         this.$store.commit("UPDATE_CONTEXT", serverMessage.context);
-        console.log(this.$store.state.context);
         this.messages.push({
           text: response.data.message, 
           author: "server",

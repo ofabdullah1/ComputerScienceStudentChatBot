@@ -47,7 +47,25 @@ namespace Capstone.Controllers
                     break;
                 case "curriculum2":
                     Curriculum curriculum = curriculumDAO.GetCurriculumResponse(message);
-                    returnMessage.Message = $"{curriculum.Response}";
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Message = $"<p>Ok! What else can I help you with?</p>" +
+                            $"<li style=\"list-style:none\">Curriculum</li> " +
+                            $"<li style=\"list-style:none\">Pathway</li>" +
+                            $"<li style=\"list-style:none\">Motivation</li>" +
+                            $"<li style=\"list-style:none\">Positions</li>";
+                    }
+                    else if (curriculum.Response == null)
+                    {
+                        returnMessage.Message = ResponseMethods.ErrorMessage(message);
+                    }
+                    else
+                    {
+                        returnMessage.Message = $"{curriculum.Response} " + 
+                            $"<p>What else would you like to know about curriculum? " +
+                            $"Tell me \"done\" at any point to stop learning about curriculum.</p>";
+                    }
+                    returnMessage.Context = ResponseMethods.StopCurriculumHelp(message);
                     break;
                 case "error":
                     returnMessage.Message = ResponseMethods.ErrorMessage(message);
