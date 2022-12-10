@@ -49,10 +49,10 @@ export default {
 
       MessageService.sendMessage(bodyMessage)
       .then((response) => {
-        const serverMessage = response.data;
-        this.$store.commit("UPDATE_CONTEXT",serverMessage.context);
+        const serverMessage = response.data
+        this.$store.commit("UPDATE_CONTEXT", serverMessage.context);
         this.messages.push({
-          text: response.data, 
+          text: response.data.message, 
           author: "server",
         });
       });
@@ -90,6 +90,7 @@ export default {
   color: #fff;
   border-style: solid;
   border-color: black;
+  box-shadow: 5px 5px 5px black;
 }
 .client {
   grid-area: chat;
@@ -103,6 +104,7 @@ export default {
   list-style-type: none;
   border-style: solid;
   border-color: black;
+  box-shadow: 5px 5px 5px black;
 }
 .chat-box-list > li {
   text-align: center;

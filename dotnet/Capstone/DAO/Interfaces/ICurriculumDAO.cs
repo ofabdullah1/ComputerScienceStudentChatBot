@@ -4,6 +4,6 @@ namespace Capstone.DAO.Interfaces
 {
     public interface ICurriculumDAO
     {
-        Curriculum GetCurriculumResponse();
+        Curriculum GetCurriculumResponse(UserMessage message);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Capstone.Models;
+﻿using Capstone.DAO.Interfaces;
+using Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -20,17 +21,21 @@ namespace Capstone.Utilities
             {
                 message.Context = "greet";
             }
-            else if (message.Message == "help"|| message.Message=="help me"|| message.Message=="i need help")
+            else if (message.Message == "help" || message.Message == "help me" || message.Message == "i need help")
             {
                 message.Context = "help";
             }
-            else if (message.Message.Contains("quote") || message.Message.Contains("motivation")|| message.Message.Contains("motivate"))
+            else if (message.Message.Contains("quote") || message.Message.Contains("motivation") || message.Message.Contains("motivate"))
             {
                 message.Context = "quote";
             }
             else if (message.Message.Contains("curriculum"))
             {
-                message.Context = "curriculum";
+                message.Context = "curriculum1";
+            }
+            else if (message.Context == "curriculum1")
+            {
+                message.Context = "curriculum2";
             }
             else
             {
@@ -65,7 +70,36 @@ namespace Capstone.Utilities
                 $"or you can try using words or phrases.</p> ";
         }
 
-        public static string ErroMessage (UserMessage message)
+        public static UserMessage StartCurriculumHelp(UserMessage message)
+        {
+            UserMessage returnMessage = new UserMessage();
+            returnMessage.Message = $"<p>Ok! Here are some things you can ask about:</p>" +
+                $"<li style=\"list-style:none\">Bools</li> " +
+                $"<li style=\"list-style:none\">Strings</li>" +
+                $"<li style=\"list-style:none\">Data types</li>" +
+                $"<li style=\"list-style:none\">Methods</li>" +
+                $"<li style=\"list-style:none\">Void</li>" +
+                $"<li style=\"list-style:none\">Casting</li>" +
+                $"<li style=\"list-style:none\">Variables</li>" +
+                $"<li style=\"list-style:none\">Constants</li>";
+            returnMessage.Context = message.Context;
+            return returnMessage;
+        }
+
+        public static string StopCurriculumHelp(UserMessage message)
+        {
+            if(message.Message.Contains("done"))
+            {
+                message.Context = "";
+            }
+            else
+            {
+                message.Context = "curriculum1";
+            }
+            return message.Context;
+        }
+
+        public static string ErrorMessage(UserMessage message)
         {
             return $"I'm sorry I don't understand.</br>Please try again.";
         }

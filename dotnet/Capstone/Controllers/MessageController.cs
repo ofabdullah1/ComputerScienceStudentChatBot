@@ -23,7 +23,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPost()]
-        public ActionResult<string> RetrieveMessage(UserMessage message)
+        public ActionResult<UserMessage> RetrieveMessage(UserMessage message)
         {
             message = ResponseMethods.SetLowerCase(message);
             message = ResponseMethods.SetContext(message);
@@ -42,16 +42,36 @@ namespace Capstone.Controllers
                     Quote quote = quoteDAO.GetQuote();
                     returnMessage.Message = $"{quote.Message} - {quote.Author}";
                     break;
-                case "curriculum":
-                    Curriculum curriculum = curriculumDAO.GetCurriculumResponse();
-                    message.Context = "curriculum";
-                    returnMessage.Message = $"{curriculum.Response}";
+                case "curriculum1":
+                    returnMessage = ResponseMethods.StartCurriculumHelp(message);
+                    break;
+                case "curriculum2":
+                    Curriculum curriculum = curriculumDAO.GetCurriculumResponse(message);
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Message = $"<p>Ok! What else can I help you with?</p>" +
+                            $"<li style=\"list-style:none\">Curriculum</li> " +
+                            $"<li style=\"list-style:none\">Pathway</li>" +
+                            $"<li style=\"list-style:none\">Motivation</li>" +
+                            $"<li style=\"list-style:none\">Positions</li>";
+                    }
+                    else if (curriculum.Response == null)
+                    {
+                        returnMessage.Message = ResponseMethods.ErrorMessage(message);
+                    }
+                    else
+                    {
+                        returnMessage.Message = $"{curriculum.Response} " + 
+                            $"<p>What else would you like to know about curriculum? " +
+                            $"Tell me \"done\" at any point to stop learning about curriculum.</p>";
+                    }
+                    returnMessage.Context = ResponseMethods.StopCurriculumHelp(message);
                     break;
                 case "error":
-                    returnMessage.Message = ResponseMethods.ErroMessage(message);
+                    returnMessage.Message = ResponseMethods.ErrorMessage(message);
                     break;
             }
-            return returnMessage.Message;
+            return returnMessage;
         }
     }
 }
