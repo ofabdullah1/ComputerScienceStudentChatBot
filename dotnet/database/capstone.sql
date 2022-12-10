@@ -50,6 +50,34 @@ CREATE TABLE curriculum_keywords (
 	CONSTRAINT [FK_curriculum_keywords_curriculum] FOREIGN KEY (curriculum_id) REFERENCES [curriculum] (curriculum_id)
 )
 
+CREATE TABLE pathway (
+	pathway_id int IDENTITY(1,1) NOT NULL,
+	response varchar(500) NOT NULL,
+	CONSTRAINT [PK_pathway] PRIMARY KEY (pathway_id)
+	)
+
+CREATE TABLE pathway_keywords (
+	keyword_id int NOT NULL,
+	pathway_id int NOT NULL,
+	CONSTRAINT [PK_pathway_keywords] PRIMARY KEY (keyword_id, pathway_id),
+	CONSTRAINT [FK_pathway_keywords_keywords] FOREIGN KEY (keyword_id) REFERENCES [keywords] (keyword_id),
+	CONSTRAINT [FK_pathway_keywords_pathway] FOREIGN KEY (pathway_id) REFERENCES [pathway] (pathway_id)
+)
+
+--CREATE TABLE resources (
+--	resource_id int IDENTITY(1,1) NOT NULL,
+--	link varchar(500) NOT NULL,
+--	CONSTRAINT [PK_resource] PRIMARY KEY (resource_id)
+--	)
+
+--CREATE TABLE resources_keywords (
+--	keyword_id int NOT NULL,
+--	resource_id int NOT NULL,
+--	CONSTRAINT [PK_resources_keywords] PRIMARY KEY (keyword_id, resource_id),
+--	CONSTRAINT [FK_resources_keywords_keywords] FOREIGN KEY (resource_id) REFERENCES [keywords] (keyword_id),
+--	CONSTRAINT [FK_resources_keywords_resources] FOREIGN KEY (resource_id) REFERENCES [resources] (resource_id)
+--)
+
 INSERT INTO quotes (motivational_quote, author) VALUES ('You don’t lose if you get knocked down, you lose if you stay down', 'Muhammad Ali');
 INSERT INTO quotes (motivational_quote, author) VALUES ('Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step', 'Lao Tzu');
 INSERT INTO quotes (motivational_quote, author) VALUES ('Standard programming answer number one: ''it depends''', 'John Fulton');
@@ -67,15 +95,32 @@ INSERT INTO keywords (keyword) VALUES ('void');
 INSERT INTO keywords (keyword) VALUES ('casting');
 INSERT INTO keywords (keyword) VALUES ('variable');
 INSERT INTO keywords (keyword) VALUES ('constant');
+INSERT INTO keywords (keyword) VALUES ('behavioral interview')
+INSERT INTO keywords (keyword) VALUES ('star')
+INSERT INTO keywords (keyword) VALUES ('technical interview')
+INSERT INTO keywords (keyword) VALUES ('best practice')
+INSERT INTO keywords (keyword) VALUES ('after interview')
+INSERT INTO keywords (keyword) VALUES ('pre interview')
+INSERT INTO keywords (keyword) VALUES ('attire')
+INSERT INTO keywords (keyword) VALUES ('wear')
 
-INSERT INTO curriculum (response) VALUES ('<p>a boolean true or false value</p>');
-INSERT INTO curriculum (response) VALUES ('<p>a piece of text some length long, may be empty, null, or have text</p>');
-INSERT INTO curriculum (response) VALUES ('<p>what can go into a variable or a parameter and what values a method may return, examples:</p> <li>bool</li><li>string</li>');
-INSERT INTO curriculum (response) VALUES ('<p>smallest unit of code, may return a value, they have a name and an access modifier</p>');
-INSERT INTO curriculum (response) VALUES ('<p>special return type that does not return any value</p>');
-INSERT INTO curriculum (response) VALUES ('<p>casting is converting from one data type to another datatype</p>');
-INSERT INTO curriculum (response) VALUES ('<p>a metaphorical box with a name on it, stores a value of a specific type</p>');
-INSERT INTO curriculum (response) VALUES ('<p>like a variable, but it cannot be changed once it is set</p>');
+
+INSERT INTO curriculum (response) VALUES ('<p>a boolean true or false value</p>
+<li><a href="https://www.w3schools.com/cs/cs_booleans.php">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>a piece of text some length long, may be empty, null, or have text</p>
+<li><a href="https://www.w3schools.com/cs/cs_strings.php">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>what can go into a variable or a parameter and what values a method may return, examples:</p> <li>bool</li><li>string</li>
+<li><a href="https://www.w3schools.com/cs/cs_data_types.php">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>smallest unit of code, may return a value, they have a name and an access modifier</p>
+<li><a href="https://www.w3schools.com/cs/cs_methods.php">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>special return type that does not return any value</p>
+<li><a href="https://youtu.be/CtkO4bSF94A">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>casting is converting from one data type to another datatype</p>
+<li><a href="https://www.w3schools.com/cs/cs_type_casting.php">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>a metaphorical box with a name on it, stores a value of a specific type</p>
+<li><a href="https://youtu.be/IxBMVztdlr4">Click here for more info</a></li>');
+INSERT INTO curriculum (response) VALUES ('<p>like a variable, but it cannot be changed once it is set</p>
+<li><a href="https://www.w3schools.com/cs/cs_variables_constants.php">Click here for more info</a></li>');
 
 
 INSERT INTO curriculum_keywords (keyword_id, curriculum_id) VALUES (1,1); 
@@ -87,7 +132,47 @@ INSERT INTO curriculum_keywords (keyword_id, curriculum_id) VALUES (6,6);
 INSERT INTO curriculum_keywords (keyword_id, curriculum_id) VALUES (7,7);
 INSERT INTO curriculum_keywords (keyword_id, curriculum_id) VALUES (8,8);
 
+INSERT INTO pathway (response) VALUES ('<p>a structured interview technique, where they request information about a candidate''past behavior. Some example questions:</p>
+<li>We''ve all had to make a decision with limited information. Tell me about a time this happened to you.</li>
+<li>Give an example of a time when you were able to apply existing technology or knowledge in a new way to solve a problem.</li>
+<li>Tell me about a time when you were particularly satisfied with your work situation. Why was this situation so gratifying,</li>');
+INSERT INTO pathway (response) VALUES ('<p>a well known, successful tactic, to address and answer behavioral questions.</p>
+<li>Situation</li>
+<li>Task</li>
+<li>Action</li>
+<li>Result</li>
+<li><a href="https://www.betterup.com/blog/star-interview-method">Click here for more info</a></li>');
+INSERT INTO pathway (response) VALUES ('<p>interview technique that can include technical questions, whiteboarding, and/or coding problems. Some example questions:</p>
+<li>What are the key principles of Object-Oriented Programming?</li>
+<li>What''s an abstract class and how does it differ from an interface?</li>
+<li>What is the difference between HTTP and HTTPs?</li>');
+INSERT INTO pathway (response) VALUES ('<p>Best practices for technical interviews: </p>
+<li>Be Honest</li>
+<li>Show what you do know?</li>
+<li>Take a breath</li>');
+INSERT INTO pathway (response) VALUES ('<p>What to do after an interview:</p>
+<li>Send a thank you</li>
+<li>Keep applying to jobs</li>
+<li>Be patient</li>');
+INSERT INTO pathway (response) VALUES ('<p>How to prepare for an interview:</p>
+<li>Research the company</li>
+<li>Arrive prepared: resume, notebook/pen, phone on silent or off</li>
+<li>Dress ot impress</li>
+<li><a href="https://youtu.be/2EbgsRHLF9Y">Click here for more info</a></li>');
+INSERT INTO pathway (response) VALUES ('<p>Here are some options:</p>
+<li>Tops - Suit jacket, tie, button down, blouse with sweater or cardigan</li>
+<li>Bottoms - Dress pants/slack, chinos, knee length dress or skirt with tights </li>
+<li>Shoes - Loafers, oxfords, ballet flats, pumps</li>
 
+
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (9,1); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (10,2); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (11,3); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (12,4); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (13,5); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (14,6); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (15,7); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (16,7); 
 
 
 --populate default data
@@ -119,5 +204,8 @@ WHERE keyword like '%'+'method'+'%'
 
 --SELECT * FROM keywords WHERE keyword CONTAINS 'method'
 
-
+SELECT response FROM pathway 
+JOIN pathway_keywords pk ON pk.pathway_id = pathway.pathway_id
+JOIN keywords k ON k.keyword_id = pk.keyword_id
+WHERE keyword = 'wear';
 
