@@ -17,6 +17,7 @@ namespace Capstone.Utilities
         }
         public static UserMessage SetContext(UserMessage message)
         {
+           
             if (message.Context == "greet")
             {
                 message.Context = "greet";
@@ -44,6 +45,10 @@ namespace Capstone.Utilities
             else if (message.Context == "pathway1")
             {
                 message.Context = "pathway2";
+            }
+            else if (message.Message.Contains("positions") || message.Message.Contains("jobs"))
+            {
+                message.Context = "positions";
             }
             else
             {
@@ -85,6 +90,14 @@ namespace Capstone.Utilities
                              $"<li>Pathway</li>" +
                              $"<li>Motivation</li>" +
                              $"<li>Positions</li>";
+        }
+
+        public static string ReturnJob()
+        {
+            JobPosition job = new JobPosition();
+            return $"<h2>{job.Title}</h2><br>" +
+                $"<h3>{job.Company}</h3><br>" +
+                $"<p>{job.Link}</p>";
         }
 
         public static UserMessage StartCurriculumHelp(UserMessage message)

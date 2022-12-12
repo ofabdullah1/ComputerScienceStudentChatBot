@@ -16,13 +16,15 @@ namespace Capstone.Controllers
         private IQuoteDAO quoteDAO;
         private ICurriculumDAO curriculumDAO;
         private IPathwayDAO pathwayDAO;
+        private IJobDAO jobDAO;
 
 
-        public MessageController(IQuoteDAO quoteDAO, ICurriculumDAO curriculumDAO, IPathwayDAO pathwayDAO)
+        public MessageController(IQuoteDAO quoteDAO, ICurriculumDAO curriculumDAO, IPathwayDAO pathwayDAO, IJobDAO jobDAO)
         {
             this.quoteDAO = quoteDAO;
             this.curriculumDAO = curriculumDAO;
             this.pathwayDAO = pathwayDAO;
+            this.jobDAO = jobDAO;
         }
 
         [HttpPost()]
@@ -87,6 +89,9 @@ namespace Capstone.Controllers
                             $"Tell me \"done\" at any point to stop learning about pathway.</p>";
                     }
                     returnMessage.Context = ResponseMethods.StopPathwayHelp(message);
+                    break;
+                case "positions":
+                    returnMessage.Message = ResponseMethods.ReturnJob();
                     break;
                 case "error":
                     returnMessage.Message = ResponseMethods.ErrorMessage(message);
