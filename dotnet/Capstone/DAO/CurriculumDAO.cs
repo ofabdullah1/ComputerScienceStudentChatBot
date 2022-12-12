@@ -22,9 +22,9 @@ namespace Capstone.DAO
             this.connectionString = connectionString;
         }
 
-        public Curriculum GetCurriculumResponse(UserMessage message)
+        public BotMessage GetCurriculumResponse(UserMessage message)
         {
-            Curriculum response = new Curriculum();
+            BotMessage response = new BotMessage();
 
             try
             {
@@ -47,13 +47,13 @@ namespace Capstone.DAO
             }
             catch (Exception ex)
             {
-                response = new Curriculum();
+                response = new BotMessage();
             }
             return response;
         }
-        private Curriculum ReaderToCurriculumResponse(SqlDataReader reader)
+        private BotMessage ReaderToCurriculumResponse(SqlDataReader reader)
         {
-            Curriculum curriculumResponse = new Curriculum();
+            BotMessage curriculumResponse = new BotMessage();
             curriculumResponse.Id = Convert.ToInt32(reader["curriculum_id"]);
             curriculumResponse.Response = Convert.ToString(reader["response"]);
         

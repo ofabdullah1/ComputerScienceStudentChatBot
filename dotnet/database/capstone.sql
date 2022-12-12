@@ -38,7 +38,7 @@ CREATE TABLE keywords (
 
 CREATE TABLE curriculum (
 	curriculum_id int IDENTITY(1,1) NOT NULL,
-	response varchar(500) NOT NULL,
+	response varchar(MAX) NOT NULL,
 	CONSTRAINT [PK_curriculum] PRIMARY KEY (curriculum_id),
 )
 
@@ -52,7 +52,7 @@ CREATE TABLE curriculum_keywords (
 
 CREATE TABLE pathway (
 	pathway_id int IDENTITY(1,1) NOT NULL,
-	response varchar(500) NOT NULL,
+	response varchar(MAX) NOT NULL,
 	CONSTRAINT [PK_pathway] PRIMARY KEY (pathway_id)
 	)
 
@@ -63,6 +63,15 @@ CREATE TABLE pathway_keywords (
 	CONSTRAINT [FK_pathway_keywords_keywords] FOREIGN KEY (keyword_id) REFERENCES [keywords] (keyword_id),
 	CONSTRAINT [FK_pathway_keywords_pathway] FOREIGN KEY (pathway_id) REFERENCES [pathway] (pathway_id)
 )
+
+CREATE TABLE open_positions (
+		position_id int IDENTITY(1,1) NOT NULL,
+		job_title nvarchar(200) NOT NULL,
+		company_name nvarchar(50) NOT NULL,
+		application_link nvarchar(200) NOT NULL,
+		brief_description nvarchar(MAX) NULL,
+)
+
 
 --CREATE TABLE resources (
 --	resource_id int IDENTITY(1,1) NOT NULL,
@@ -99,28 +108,28 @@ INSERT INTO keywords (keyword) VALUES ('behavioral interview')
 INSERT INTO keywords (keyword) VALUES ('star')
 INSERT INTO keywords (keyword) VALUES ('technical interview')
 INSERT INTO keywords (keyword) VALUES ('best practice')
-INSERT INTO keywords (keyword) VALUES ('after interview')
-INSERT INTO keywords (keyword) VALUES ('pre interview')
+INSERT INTO keywords (keyword) VALUES ('after an interview')
+INSERT INTO keywords (keyword) VALUES ('before an interview')
 INSERT INTO keywords (keyword) VALUES ('attire')
 INSERT INTO keywords (keyword) VALUES ('wear')
 
 
 INSERT INTO curriculum (response) VALUES ('<p>a boolean true or false value</p>
-<li><a href="https://www.w3schools.com/cs/cs_booleans.php">Click here for more info</a></li>');
+<li><a href="https://www.w3schools.com/cs/cs_booleans.php" target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>a piece of text some length long, may be empty, null, or have text</p>
-<li><a href="https://www.w3schools.com/cs/cs_strings.php">Click here for more info</a></li>');
+<li><a href="https://www.w3schools.com/cs/cs_strings.php" target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>what can go into a variable or a parameter and what values a method may return, examples:</p> <li>bool</li><li>string</li>
-<li><a href="https://www.w3schools.com/cs/cs_data_types.php">Click here for more info</a></li>');
+<li><a href="https://www.w3schools.com/cs/cs_data_types.php" target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>smallest unit of code, may return a value, they have a name and an access modifier</p>
-<li><a href="https://www.w3schools.com/cs/cs_methods.php">Click here for more info</a></li>');
+<li><a href="https://www.w3schools.com/cs/cs_methods.php" target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>special return type that does not return any value</p>
-<li><a href="https://youtu.be/CtkO4bSF94A">Click here for more info</a></li>');
+<li><a href="https://youtu.be/CtkO4bSF94A" target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>casting is converting from one data type to another datatype</p>
-<li><a href="https://www.w3schools.com/cs/cs_type_casting.php">Click here for more info</a></li>');
+<li><a href="https://www.w3schools.com/cs/cs_type_casting.php" target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>a metaphorical box with a name on it, stores a value of a specific type</p>
-<li><a href="https://youtu.be/IxBMVztdlr4">Click here for more info</a></li>');
+<li><a href="https://youtu.be/IxBMVztdlr4 " target="_blank">Click here for more info</a></li>');
 INSERT INTO curriculum (response) VALUES ('<p>like a variable, but it cannot be changed once it is set</p>
-<li><a href="https://www.w3schools.com/cs/cs_variables_constants.php">Click here for more info</a></li>');
+<li><a href="https://www.w3schools.com/cs/cs_variables_constants.php" target="_blank">Click here for more info</a></li>');
 
 
 INSERT INTO curriculum_keywords (keyword_id, curriculum_id) VALUES (1,1); 
@@ -135,13 +144,13 @@ INSERT INTO curriculum_keywords (keyword_id, curriculum_id) VALUES (8,8);
 INSERT INTO pathway (response) VALUES ('<p>a structured interview technique, where they request information about a candidate''past behavior. Some example questions:</p>
 <li>We''ve all had to make a decision with limited information. Tell me about a time this happened to you.</li>
 <li>Give an example of a time when you were able to apply existing technology or knowledge in a new way to solve a problem.</li>
-<li>Tell me about a time when you were particularly satisfied with your work situation. Why was this situation so gratifying,</li>');
+<li>Tell me about a time when you were particularly satisfied with your work situation. Why was this situation so gratifying?</li>');
 INSERT INTO pathway (response) VALUES ('<p>a well known, successful tactic, to address and answer behavioral questions.</p>
 <li>Situation</li>
 <li>Task</li>
 <li>Action</li>
 <li>Result</li>
-<li><a href="https://www.betterup.com/blog/star-interview-method">Click here for more info</a></li>');
+<li><a href="https://www.betterup.com/blog/star-interview-method" target="_blank">Click here for more info</a></li>');
 INSERT INTO pathway (response) VALUES ('<p>interview technique that can include technical questions, whiteboarding, and/or coding problems. Some example questions:</p>
 <li>What are the key principles of Object-Oriented Programming?</li>
 <li>What''s an abstract class and how does it differ from an interface?</li>
@@ -158,7 +167,7 @@ INSERT INTO pathway (response) VALUES ('<p>How to prepare for an interview:</p>
 <li>Research the company</li>
 <li>Arrive prepared: resume, notebook/pen, phone on silent or off</li>
 <li>Dress ot impress</li>
-<li><a href="https://youtu.be/2EbgsRHLF9Y">Click here for more info</a></li>');
+<li><a href="https://youtu.be/2EbgsRHLF9Y" target="_blank">Click here for more info</a></li>');
 INSERT INTO pathway (response) VALUES ('<p>Here are some options:</p>
 <li>Tops - Suit jacket, tie, button down, blouse with sweater or cardigan</li>
 <li>Bottoms - Dress pants/slack, chinos, knee length dress or skirt with tights </li>
@@ -172,7 +181,41 @@ INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (12,4);
 INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (13,5); 
 INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (14,6); 
 INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (15,7); 
-INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (16,7); 
+INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (16,7);
+
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
+INSERT INTO open_positions (job_title, company_name, application_link, brief_description) VALUES ('', '', 
+'<a href="" target="_blank">Apply here</a>', 
+'');
 
 
 --populate default data
@@ -207,9 +250,10 @@ WHERE 'bool' LIKE keyword
 --SELECT * FROM keywords WHERE keyword CONTAINS 'method'
 declare @bla varchar(150)
 
-set @bla = 'interview'
+set @bla = 'behavioral interview'
 SELECT response FROM pathway 
 JOIN pathway_keywords pk ON pk.pathway_id = pathway.pathway_id
 JOIN keywords k ON k.keyword_id = pk.keyword_id
-WHERE  @bla Like '%' + @bla + '%';
+WHERE  'behavioral interview' Like '%' + keyword + '%';
 
+SELECT * FROM pathway;

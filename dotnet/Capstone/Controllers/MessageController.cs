@@ -43,20 +43,17 @@ namespace Capstone.Controllers
                     break;
                 case "quote":
                     Quote quote = quoteDAO.GetQuote();
-                    returnMessage.Message = $"{quote.Message} - {quote.Author}";
+                    returnMessage.Message = $"{quote.Message} - {quote.Author}<br>" +
+                        ResponseMethods.ReturnCategories();
                     break;
                 case "curriculum1":
                     returnMessage = ResponseMethods.StartCurriculumHelp(message);
                     break;
                 case "curriculum2":
-                    Curriculum curriculum = curriculumDAO.GetCurriculumResponse(message);
+                    BotMessage curriculum = curriculumDAO.GetCurriculumResponse(message);
                     if (message.Message.Contains("done"))
                     {
-                        returnMessage.Message = $"<p>Ok! What else can I help you with?</p>" +
-                            $"<li style=\"list-style:none\">Curriculum</li> " +
-                            $"<li style=\"list-style:none\">Pathway</li>" +
-                            $"<li style=\"list-style:none\">Motivation</li>" +
-                            $"<li style=\"list-style:none\">Positions</li>";
+                        returnMessage.Message = ResponseMethods.ReturnCategories();
                     }
                     else if (curriculum.Response == null)
                     {
@@ -74,14 +71,10 @@ namespace Capstone.Controllers
                     returnMessage = ResponseMethods.StartPathwayHelp(message);
                     break;
                 case "pathway2":
-                    Pathway pathway = pathwayDAO.GetPathwayResponse(message);
+                    BotMessage pathway = pathwayDAO.GetPathwayResponse(message);
                     if (message.Message.Contains("done"))
                     {
-                        returnMessage.Message = $"<p>Ok! What else can I help you with?</p>" +
-                            $"<li style=\"list-style:none\">Curriculum</li> " +
-                            $"<li style=\"list-style:none\">Pathway</li>" +
-                            $"<li style=\"list-style:none\">Motivation</li>" +
-                            $"<li style=\"list-style:none\">Positions</li>";
+                        returnMessage.Message = ResponseMethods.ReturnCategories();
                     }
                     else if (pathway.Response == null)
                     {

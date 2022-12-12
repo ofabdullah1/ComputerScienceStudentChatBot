@@ -23,9 +23,9 @@ namespace Capstone.DAO
             this.connectionString = connectionString;
         }
 
-        public Pathway GetPathwayResponse(UserMessage message)
+        public BotMessage GetPathwayResponse(UserMessage message)
         {
-            Pathway response = new Pathway();
+            BotMessage response = new BotMessage();
 
             try
             {
@@ -48,13 +48,13 @@ namespace Capstone.DAO
             }
             catch (Exception ex)
             {
-                response = new Pathway();
+                response = new BotMessage();
             }
             return response;
         }
-        private Pathway ReaderToPathwayResponse(SqlDataReader reader)
+        private BotMessage ReaderToPathwayResponse(SqlDataReader reader)
         {
-            Pathway pathwayResponse = new Pathway();
+            BotMessage pathwayResponse = new BotMessage();
             pathwayResponse.Id = Convert.ToInt32(reader["pathway_id"]);
             pathwayResponse.Response = Convert.ToString(reader["response"]);
         

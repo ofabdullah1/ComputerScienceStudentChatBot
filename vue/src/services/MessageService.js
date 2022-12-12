@@ -7,4 +7,5 @@ export default{
     sendMessage(message){
         return axios.post(path, message);
     }
+
 }

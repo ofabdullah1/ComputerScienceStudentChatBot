@@ -59,10 +59,10 @@ namespace Capstone.Utilities
             return $"<p>Hello {message.Message}!</br>" +
                 $"I’m TE-bot and I’m here to help you with your Tech Elevator needs. </br>" +
                 $"What can I help you with today:  </p>" +
-                $"<li style=\"list-style:none\">Curriculum</li> " +
-                $"<li style=\"list-style:none\">Pathway</li>" +
-                $"<li style=\"list-style:none\">Motivation</li>" +
-                $"<li style=\"list-style:none\">Positions</li>" +
+                $"<li>Curriculum</li> " +
+                $"<li>Pathway</li>" +
+                $"<li>Motivation</li>" +
+                $"<li>Positions</li>" +
                 $"<p>At any point you can type \"help\" for additional assistance.</p>";
 
         }
@@ -71,32 +71,33 @@ namespace Capstone.Utilities
         {
             message.Context = "";
             return $"<p>Ok, Here are some ways you can phrase your questions:" +
-                $" <li style=\"list-style:none\">I need help with X</li>  " +
-                $"<li style=\"list-style:none\">Where can I learn about X</li>" +
-                $"<li style=\"list-style:none\">I don’t understand X</li> " +
-                $"<li style=\"list-style:none\">What is X</li> </br>" +
+                $" <li>I need help with X</li>  " +
+                $"<li>Where can I learn about X</li>" +
+                $"<li>I don’t understand X</li> " +
+                $"<li>What is X</li> </br>" +
                 $"or you can try using words or phrases.</p> ";
+        }
+
+        public static string ReturnCategories()
+        {
+            return $"<p>Ok! What else can I help you with?</p>" +
+                             $"<li>Curriculum</li> " +
+                             $"<li>Pathway</li>" +
+                             $"<li>Motivation</li>" +
+                             $"<li>Positions</li>";
         }
 
         public static UserMessage StartCurriculumHelp(UserMessage message)
         {
             UserMessage returnMessage = new UserMessage();
-            returnMessage.Message = $"<p>Ok! Here are some things you can ask about:</p>" +
-                $"<li style=\"list-style:none\">Bools</li> " +
-                $"<li style=\"list-style:none\">Strings</li>" +
-                $"<li style=\"list-style:none\">Data types</li>" +
-                $"<li style=\"list-style:none\">Methods</li>" +
-                $"<li style=\"list-style:none\">Void</li>" +
-                $"<li style=\"list-style:none\">Casting</li>" +
-                $"<li style=\"list-style:none\">Variables</li>" +
-                $"<li style=\"list-style:none\">Constants</li>";
+            returnMessage.Message = $"<p>What questions do you have related to curriculum?</p>";
             returnMessage.Context = message.Context;
             return returnMessage;
         }
 
         public static string StopCurriculumHelp(UserMessage message)
         {
-            if(message.Message.Contains("done"))
+            if (message.Message.Contains("done"))
             {
                 message.Context = "";
             }
@@ -110,15 +111,7 @@ namespace Capstone.Utilities
         public static UserMessage StartPathwayHelp(UserMessage message)
         {
             UserMessage returnMessage = new UserMessage();
-            returnMessage.Message = $"<p>Ok! Here are some things you can ask about:</p>" +
-                $"<li style=\"list-style:none\">Behavioral interview</li> " +
-                $"<li style=\"list-style:none\">Star</li>" +
-                $"<li style=\"list-style:none\">Technical interview</li>" +
-                $"<li style=\"list-style:none\">Best practice</li>" +
-                $"<li style=\"list-style:none\">After interview</li>" +
-                $"<li style=\"list-style:none\">Pre interview</li>" +
-                $"<li style=\"list-style:none\">Attire</li>" +
-                $"<li style=\"list-style:none\">Wear</li>";
+            returnMessage.Message = $"<p>What questions do you have related to pathway?</p>";
             returnMessage.Context = message.Context;
             return returnMessage;
         }
