@@ -25,9 +25,6 @@
   row-gap: 10px;
   column-gap: 10px;
   background-image: url("https://img.freepik.com/free-photo/motherboard-circuit-technology-background-gradient-blue_53876-124654.jpg?size=626&ext=jpg&ga=GA1.2.1987393692.1670518260");
-  overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: inherit;
   height: 100%;
   background-color: #7A7FB1;
   padding: 0px;

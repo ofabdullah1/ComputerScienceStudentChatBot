@@ -162,7 +162,7 @@ INSERT INTO pathway (response) VALUES ('<p>How to prepare for an interview:</p>
 INSERT INTO pathway (response) VALUES ('<p>Here are some options:</p>
 <li>Tops - Suit jacket, tie, button down, blouse with sweater or cardigan</li>
 <li>Bottoms - Dress pants/slack, chinos, knee length dress or skirt with tights </li>
-<li>Shoes - Loafers, oxfords, ballet flats, pumps</li>
+<li>Shoes - Loafers, oxfords, ballet flats, pumps</li> ');
 
 
 INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (9,1); 
@@ -185,6 +185,7 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('Nancy','Yh
 
 GO
 
+
 declare @bob varchar(150)
 
 declare @tom varchar(150)
@@ -192,10 +193,10 @@ declare @tom varchar(150)
 
 set @tom = '%' + @bob + '%'
 
-SELECT * FROM curriculum 
-JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
-JOIN keywords k ON k.keyword_id = ck.keyword_id
-WHERE keyword  @tom
+--SELECT * FROM curriculum 
+--JOIN curriculum_keywords ck ON ck.curriculum_id = curriculum.curriculum_id
+--JOIN keywords k ON k.keyword_id = ck.keyword_id
+--WHERE keyword  @tom
 
 set @bob = 'method'
 SELECT response FROM curriculum 
@@ -204,9 +205,11 @@ JOIN keywords k ON k.keyword_id = ck.keyword_id
 WHERE 'bool' LIKE keyword
 
 --SELECT * FROM keywords WHERE keyword CONTAINS 'method'
+declare @bla varchar(150)
 
+set @bla = 'interview'
 SELECT response FROM pathway 
 JOIN pathway_keywords pk ON pk.pathway_id = pathway.pathway_id
 JOIN keywords k ON k.keyword_id = pk.keyword_id
-WHERE keyword = 'wear';
+WHERE  @bla Like '%' + @bla + '%';
 

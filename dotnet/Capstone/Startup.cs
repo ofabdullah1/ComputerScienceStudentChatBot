@@ -66,6 +66,7 @@ namespace Capstone
             services.AddTransient<IUserDao>(m => new UserSqlDao(connectionString));
             services.AddTransient<IQuoteDAO, QuoteDAO>(m => new QuoteDAO(connectionString));
             services.AddTransient<ICurriculumDAO, CurriculumDAO>(m => new CurriculumDAO(connectionString));
+            services.AddTransient<IPathwayDAO, PathwayDAO>(m => new PathwayDAO(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

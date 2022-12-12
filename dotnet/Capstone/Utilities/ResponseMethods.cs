@@ -37,6 +37,14 @@ namespace Capstone.Utilities
             {
                 message.Context = "curriculum2";
             }
+            else if (message.Message.Contains("pathway"))
+            {
+                message.Context = "pathway1";
+            }
+            else if (message.Context == "pathway1")
+            {
+                message.Context = "pathway2";
+            }
             else
             {
                 message.Context = "error";
@@ -95,6 +103,35 @@ namespace Capstone.Utilities
             else
             {
                 message.Context = "curriculum1";
+            }
+            return message.Context;
+        }
+
+        public static UserMessage StartPathwayHelp(UserMessage message)
+        {
+            UserMessage returnMessage = new UserMessage();
+            returnMessage.Message = $"<p>Ok! Here are some things you can ask about:</p>" +
+                $"<li style=\"list-style:none\">Behavioral interview</li> " +
+                $"<li style=\"list-style:none\">Star</li>" +
+                $"<li style=\"list-style:none\">Technical interview</li>" +
+                $"<li style=\"list-style:none\">Best practice</li>" +
+                $"<li style=\"list-style:none\">After interview</li>" +
+                $"<li style=\"list-style:none\">Pre interview</li>" +
+                $"<li style=\"list-style:none\">Attire</li>" +
+                $"<li style=\"list-style:none\">Wear</li>";
+            returnMessage.Context = message.Context;
+            return returnMessage;
+        }
+
+        public static string StopPathwayHelp(UserMessage message)
+        {
+            if (message.Message.Contains("done"))
+            {
+                message.Context = "";
+            }
+            else
+            {
+                message.Context = "pathway1";
             }
             return message.Context;
         }

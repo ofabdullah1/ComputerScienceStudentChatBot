@@ -15,11 +15,14 @@ namespace Capstone.Controllers
     {
         private IQuoteDAO quoteDAO;
         private ICurriculumDAO curriculumDAO;
+        private IPathwayDAO pathwayDAO;
 
-        public MessageController(IQuoteDAO quoteDAO, ICurriculumDAO curriculumDAO)
+
+        public MessageController(IQuoteDAO quoteDAO, ICurriculumDAO curriculumDAO, IPathwayDAO pathwayDAO)
         {
             this.quoteDAO = quoteDAO;
             this.curriculumDAO = curriculumDAO;
+            this.pathwayDAO = pathwayDAO;
         }
 
         [HttpPost()]
@@ -66,6 +69,31 @@ namespace Capstone.Controllers
                             $"Tell me \"done\" at any point to stop learning about curriculum.</p>";
                     }
                     returnMessage.Context = ResponseMethods.StopCurriculumHelp(message);
+                    break;
+                case "pathway1":
+                    returnMessage = ResponseMethods.StartPathwayHelp(message);
+                    break;
+                case "pathway2":
+                    Pathway pathway = pathwayDAO.GetPathwayResponse(message);
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Message = $"<p>Ok! What else can I help you with?</p>" +
+                            $"<li style=\"list-style:none\">Curriculum</li> " +
+                            $"<li style=\"list-style:none\">Pathway</li>" +
+                            $"<li style=\"list-style:none\">Motivation</li>" +
+                            $"<li style=\"list-style:none\">Positions</li>";
+                    }
+                    else if (pathway.Response == null)
+                    {
+                        returnMessage.Message = ResponseMethods.ErrorMessage(message);
+                    }
+                    else
+                    {
+                        returnMessage.Message = $"{pathway.Response} " +
+                            $"<p>What else would you like to know about pathway? " +
+                            $"Tell me \"done\" at any point to stop learning about pathway.</p>";
+                    }
+                    returnMessage.Context = ResponseMethods.StopPathwayHelp(message);
                     break;
                 case "error":
                     returnMessage.Message = ResponseMethods.ErrorMessage(message);
