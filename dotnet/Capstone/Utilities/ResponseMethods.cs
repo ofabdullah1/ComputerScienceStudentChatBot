@@ -17,7 +17,7 @@ namespace Capstone.Utilities
         }
         public static UserMessage SetContext(UserMessage message)
         {
-           
+
             if (message.Context == "greet")
             {
                 message.Context = "greet";
@@ -48,7 +48,15 @@ namespace Capstone.Utilities
             }
             else if (message.Message.Contains("positions") || message.Message.Contains("jobs"))
             {
-                message.Context = "positions";
+                message.Context = "positions1";
+            }
+            else if (message.Context == "positions1" && message.Message.Contains("location"))
+            {
+                message.Context = "positionsLocation";
+            }
+            else if (message.Context == "positionsLocation")
+            {
+                message.Context = "getJobsLocation";
             }
             else
             {
@@ -92,12 +100,14 @@ namespace Capstone.Utilities
                              $"<li>Positions</li>";
         }
 
-        public static string ReturnJob()
+        public static string ReturnJob(JobPosition job)
         {
-            JobPosition job = new JobPosition();
-            return $"<h2>{job.Title}</h2><br>" +
-                $"<h3>{job.Company}</h3><br>" +
-                $"<p>{job.Link}</p>";
+
+            return $"<h3>{job.Title}</h3>" +
+                $"<h4>{job.Company}</h4>" +
+                $"<p>{job.Link}</p>" +
+                $"<p>Tell me \"done\" at any point to stop searching for jobs.</p>";
+
         }
 
         public static UserMessage StartCurriculumHelp(UserMessage message)
@@ -141,6 +151,36 @@ namespace Capstone.Utilities
             }
             return message.Context;
         }
+
+        public static UserMessage StartJobSearch(UserMessage message)
+        {
+            UserMessage returnMessage = new UserMessage();
+            returnMessage.Message = $"<p> Ok! Would you like to search by job title or location?</p>";
+            returnMessage.Context = message.Context;
+            return returnMessage;
+        }
+
+        public static string StopJobSearch(UserMessage message)
+        {
+            if (message.Message.Contains("done"))
+            {
+                message.Context = "";
+            }
+            else
+            {
+                message.Context = "positions1";
+            }
+            return message.Context;
+        }
+
+        public static UserMessage AskForLocation(UserMessage message)
+        {
+            UserMessage returnMessage = new UserMessage();
+            returnMessage.Message = $"<p>What location are you interested in?</p>";
+            returnMessage.Context = message.Context;
+            return returnMessage;
+        }
+
 
         public static string ErrorMessage(UserMessage message)
         {

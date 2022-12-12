@@ -90,8 +90,19 @@ namespace Capstone.Controllers
                     }
                     returnMessage.Context = ResponseMethods.StopPathwayHelp(message);
                     break;
-                case "positions":
-                    returnMessage.Message = ResponseMethods.ReturnJob();
+                case "positions1":
+                    returnMessage = ResponseMethods.StartJobSearch(message);
+                    break;
+                case "positionsLocation":
+                    returnMessage = ResponseMethods.AskForLocation(message);
+                    break;
+                case "getJobsLocation":
+                    JobPosition job = jobDAO.GetJobPostingByLocation(message);
+                    returnMessage.Message = ResponseMethods.ReturnJob(job);
+                    break;
+                case "positionsTitle":
+                    //JobPosition job = jobDAO.GetJobPostingByTitle(message);
+                    //returnMessage.Message = ResponseMethods.ReturnJob(job);
                     break;
                 case "error":
                     returnMessage.Message = ResponseMethods.ErrorMessage(message);

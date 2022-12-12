@@ -15,8 +15,10 @@ namespace Capstone.DAO
         private string sqlGetJobByTitle = "SELECT position_id, job_title, company_name, application_link FROM " +
             "open_positions WHERE @job_title like '%' + job_title + '%'";
 
-        private string sqlGetJobByLocation = "SELECT Top 3 * FROM open_positions Where city_state like '@city_state%' " +
-            "OR city_state like '%@city_state' OR @city_state LIKE '%' + city_state + '%' ORDER BY newid();";
+        private string sqlGetJobByLocation = "SELECT Top 3 * FROM open_positions Where city_state like @city_state% " +
+            "OR city_state like %@city_state OR @city_state LIKE '%' + city_state + '%' ORDER BY newid();";
+
+
 
         public JobDAO(string connectionString)
         {
@@ -39,6 +41,7 @@ namespace Capstone.DAO
 
                     while (reader.Read())
                     {
+
                         response = ReaderToJobPosting(reader);
 
                     }
@@ -65,7 +68,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sqlGetJobByLocation, conn);
-                    cmd.Parameters.AddWithValue("@city_state", message.Message);
+                    //cmd.Parameters.AddWithValue("@city_state", message.Message);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
