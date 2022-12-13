@@ -120,7 +120,6 @@ namespace Capstone.Utilities
                  $"<p>{job.Link}</p>" +
                  $"---------------------------------------------------------------------<br>";
             }
-                returnMessage.Message += $"<p>Tell me \"done\" at any point to stop searching for jobs.</p>";
             return returnMessage;
 
 

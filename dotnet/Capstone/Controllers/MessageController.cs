@@ -114,6 +114,7 @@ namespace Capstone.Controllers
                     {
                         List<JobPosition> jobs = jobDAO.GetJobPostingsByLocation(message);
                         returnMessage = ResponseMethods.ReturnJobs(jobs);
+                        returnMessage.Message += ResponseMethods.ReturnCategories();
                     }
                     break;
                 case "positionsTitle":
@@ -137,6 +138,7 @@ namespace Capstone.Controllers
                     {
                         List<JobPosition> jobs = jobDAO.GetJobPostingsByTitle(message);
                         returnMessage = ResponseMethods.ReturnJobs(jobs);
+                        returnMessage.Message += ResponseMethods.ReturnCategories();
                     }
                     break;
                 case "error":
