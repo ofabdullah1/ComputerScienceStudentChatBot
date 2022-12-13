@@ -54,9 +54,17 @@ namespace Capstone.Utilities
             {
                 message.Context = "positionsLocation";
             }
+            else if (message.Context == "positions1" && message.Message.Contains("title"))
+            {
+                message.Context = "positionsTitle";
+            }
             else if (message.Context == "positionsLocation")
             {
                 message.Context = "getJobsLocation";
+            }
+            else if (message.Context == "positionsTitle")
+            {
+                message.Context = "getJobsTitle";
             }
             else
             {
@@ -100,18 +108,19 @@ namespace Capstone.Utilities
                              $"<li>Positions</li>";
         }
 
-        public static string ReturnJobs(List<JobPosition> jobs)
+        public static UserMessage ReturnJobs(List<JobPosition> jobs)
         {
-            string returnMessage = "";
+            UserMessage returnMessage = new UserMessage(); ;
             foreach(JobPosition job in jobs)
             {
-                returnMessage +=
-                 $"<h3>{job.Title}</h3>" +
-                 $"<h4>{job.Company}</h4>" +
+                returnMessage.Message +=
+                 $"<strong>{job.Title}</strong>" +
+                 $"<p>{job.Company}</p>" +
+                 $"<p>{job.Location}</p>" +
                  $"<p>{job.Link}</p>" +
-                 $"-------------------------------------";
+                 $"---------------------------------------------------------------------<br>";
             }
-                returnMessage += $"<p>Tell me \"done\" at any point to stop searching for jobs.</p>";
+                returnMessage.Message += $"<p>Tell me \"done\" at any point to stop searching for jobs.</p>";
             return returnMessage;
 
 
@@ -169,24 +178,25 @@ namespace Capstone.Utilities
 
         public static string StopJobSearch(UserMessage message)
         {
-            if (message.Message.Contains("done"))
-            {
-                message.Context = "";
-            }
-            else
-            {
-                message.Context = "positions1";
-            }
+            message.Context = "";
             return message.Context;
         }
 
         public static UserMessage AskForLocation(UserMessage message)
         {
             UserMessage returnMessage = new UserMessage();
-            returnMessage.Message = $"<p>What location are you interested in?</p>";
+            returnMessage.Message = $"<p>What location are you interested in? (city, state abbreviation)</p>";
             returnMessage.Context = message.Context;
             return returnMessage;
         }
+        public static UserMessage AskForJobTitle(UserMessage message)
+        {
+            UserMessage returnMessage = new UserMessage();
+            returnMessage.Message = $"<p>What jobs are you interested in? Please search using one word.</p>";
+            returnMessage.Context = message.Context;
+            return returnMessage;
+        }
+
 
 
         public static string ErrorMessage(UserMessage message)

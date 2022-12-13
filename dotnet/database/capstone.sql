@@ -69,7 +69,7 @@ CREATE TABLE open_positions (
 		job_title nvarchar(200) NOT NULL,
 		company_name nvarchar(50) NOT NULL,
 		city_state nvarchar(50) NULL,
-		application_link nvarchar(200) NOT NULL,
+		application_link nvarchar(MAX) NOT NULL,
 		
 )
 
@@ -247,4 +247,6 @@ JOIN pathway_keywords pk ON pk.pathway_id = pathway.pathway_id
 JOIN keywords k ON k.keyword_id = pk.keyword_id
 WHERE  'behavioral interview' Like '%' + keyword + '%';
 
-SELECT * FROM pathway;
+SELECT * FROM open_positions;
+
+SELECT TOP 3 * FROM open_positions WHERE job_title Like '%software%' ORDER BY newid();

@@ -12,7 +12,7 @@ namespace Capstone.DAO
     {
         private string connectionString;
 
-        private string sqlGetJobByTitle = "SELECT TOP 3 * FROM open_positions WHERE job_title Like '%@job_title%' ORDER BY newid();";
+        private string sqlGetJobByTitle = "SELECT TOP 3 * FROM open_positions WHERE job_title Like '%' + @job_title + '%' ORDER BY newid();";
 
         private string sqlGetJobByLocation = "SELECT TOP 3 * FROM open_positions WHERE @city_state Like '%' + city_state + '%' ORDER BY newid();";
 

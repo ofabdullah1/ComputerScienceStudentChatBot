@@ -32,10 +32,10 @@ namespace Capstone.Controllers
         {
             message = ResponseMethods.SetLowerCase(message);
             message = ResponseMethods.SetContext(message);
-            
+
             UserMessage returnMessage = new UserMessage();
 
-            switch(message.Context)
+            switch (message.Context)
             {
                 case "greet":
                     returnMessage.Message = ResponseMethods.ReturnGreeting(message);
@@ -63,7 +63,7 @@ namespace Capstone.Controllers
                     }
                     else
                     {
-                        returnMessage.Message = $"{curriculum.Response} " + 
+                        returnMessage.Message = $"{curriculum.Response} " +
                             $"<p>What else would you like to know about curriculum? " +
                             $"Tell me \"done\" at any point to stop learning about curriculum.</p>";
                     }
@@ -91,18 +91,53 @@ namespace Capstone.Controllers
                     returnMessage.Context = ResponseMethods.StopPathwayHelp(message);
                     break;
                 case "positions1":
-                    returnMessage = ResponseMethods.StartJobSearch(message);
+                        returnMessage = ResponseMethods.StartJobSearch(message);
                     break;
                 case "positionsLocation":
-                    returnMessage = ResponseMethods.AskForLocation(message);
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Context = ResponseMethods.StopJobSearch(message);
+                        returnMessage.Message = ResponseMethods.ReturnCategories();
+                    }
+                    else
+                    {
+                        returnMessage = ResponseMethods.AskForLocation(message);
+                    }
                     break;
                 case "getJobsLocation":
-                    List<JobPosition> jobs = jobDAO.GetJobPostingsByLocation(message);
-                    returnMessage.Message = ResponseMethods.ReturnJobs(jobs);
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Context = ResponseMethods.StopJobSearch(message);
+                        returnMessage.Message = ResponseMethods.ReturnCategories();
+                    }
+                    else
+                    {
+                        List<JobPosition> jobs = jobDAO.GetJobPostingsByLocation(message);
+                        returnMessage = ResponseMethods.ReturnJobs(jobs);
+                    }
                     break;
                 case "positionsTitle":
-                    //JobPosition job = jobDAO.GetJobPostingByTitle(message);
-                    //returnMessage.Message = ResponseMethods.ReturnJob(job);
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Context = ResponseMethods.StopJobSearch(message);
+                        returnMessage.Message = ResponseMethods.ReturnCategories();
+                    }
+                    else
+                    {
+                        returnMessage = ResponseMethods.AskForJobTitle(message);
+                    }
+                    break;
+                case "getJobsTitle":
+                    if (message.Message.Contains("done"))
+                    {
+                        returnMessage.Context = ResponseMethods.StopJobSearch(message);
+                        returnMessage.Message = ResponseMethods.ReturnCategories();
+                    }
+                    else
+                    {
+                        List<JobPosition> jobs = jobDAO.GetJobPostingsByTitle(message);
+                        returnMessage = ResponseMethods.ReturnJobs(jobs);
+                    }
                     break;
                 case "error":
                     returnMessage.Message = ResponseMethods.ErrorMessage(message);
