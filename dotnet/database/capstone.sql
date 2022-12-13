@@ -70,7 +70,7 @@ CREATE TABLE open_positions (
 		company_name nvarchar(50) NOT NULL,
 		city_state nvarchar(50) NULL,
 		application_link nvarchar(200) NOT NULL,
-		brief_description nvarchar(MAX) NULL,
+		
 )
 
 
@@ -186,25 +186,25 @@ INSERT INTO pathway_keywords (keyword_id, pathway_id) VALUES (16,7);
 
 INSERT INTO open_positions (job_title, company_name, city_state, application_link) VALUES ('Jr. Software Engineer', 'JP Morgan Chase Bank, N.A.', 'Columbus, OH',
 '<a href="https://www.indeed.com/jobs?q=junior+software+engineer&l=Columbus%2C+OH&vjk=f208caffed4d93c5" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Jr. Software Engineer', 'Batelle', 'Columbus, OH',
+INSERT INTO open_positions (job_title, company_name, city_state,application_link) VALUES ('Jr. Software Engineer', 'Batelle', 'Columbus, OH',
 '<a href="https://www.indeed.com/jobs?q=junior+software+engineer&l=Columbus%2C+OH&vjk=e3082a07c2715c01" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Jr. Software Engineer', 'Brookesource', 'Columbus, OH',
+INSERT INTO open_positions (job_title, company_name, city_state,application_link) VALUES ('Jr. Software Engineer', 'Brookesource', 'Columbus, OH',
 '<a href="https://www.indeed.com/jobs?q=junior+software+engineer&l=Columbus%2C+OH&vjk=2961af50c7219738&advn=3752356117023190" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Java Developer', 'COGENT Infortech', 'Pittsburgh, PA',
+INSERT INTO open_positions (job_title, company_name,city_state, application_link) VALUES ('Java Developer', 'COGENT Infortech', 'Pittsburgh, PA',
 '<a href="https://www.linkedin.com/jobs/view/java-developer-at-cogent-infotech-3393453303/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Java Developer', 'CGI', 'Pittsburgh, PA',
+INSERT INTO open_positions (job_title, company_name,city_state, application_link) VALUES ('Java Developer', 'CGI', 'Pittsburgh, PA',
 '<a href="https://www.learn4good.com/jobs/pittsburgh/pennsylvania/software_development/1879927295/e/" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('C# Software Engineer', 'Emerald Resource Group', 'Cleveland, OH',
+INSERT INTO open_positions (job_title, company_name, city_state,application_link) VALUES ('C# Software Engineer', 'Emerald Resource Group', 'Cleveland, OH',
 '<a href="https://www.careerbuilder.com/job/J3R031727J0NNGB0N0N?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('C# Software Engineer', 'National General Insurance', 'Cleveland, OH',
+INSERT INTO open_positions (job_title, company_name,city_state, application_link) VALUES ('C# Software Engineer', 'National General Insurance', 'Cleveland, OH',
 '<a href="https://www.glassdoor.com/job-listing/remote-software-engineer-c-national-general-insurance-JV_IC1145778_KO0,26_KE27,53.htm?jl=1008031260058&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('UI Frontend Developer', 'American Heart Association', 'Columbus, OH',
+INSERT INTO open_positions (job_title, company_name, city_state,application_link) VALUES ('UI Frontend Developer', 'American Heart Association', 'Columbus, OH',
 '<a href="https://www.linkedin.com/jobs/view/ui-front-end-developer-at-american-heart-association-3389575103/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Frontend Developer', 'Johnson, Mirmiran, & Thompson', 'Pittsburgh, PA',
+INSERT INTO open_positions (job_title, company_name, city_state,application_link) VALUES ('Frontend Developer', 'Johnson, Mirmiran, & Thompson', 'Pittsburgh, PA',
 '<a href="https://www.linkedin.com/jobs/view/front-end-developer-at-johnson-mirmiran-thompson-3366253838/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Backend Developer', 'Jobot', 'Cleveland, OH',
+INSERT INTO open_positions (job_title, company_name, city_state,application_link) VALUES ('Backend Developer', 'Jobot', 'Cleveland, OH',
 '<a href="https://www.linkedin.com/jobs/view/back-end-developer-at-jobot-3378351023/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic" target="_blank">Apply here</a>');
-INSERT INTO open_positions (job_title, company_name, application_link) VALUES ('Associate Software Engineer', 'McKesson', 'Columbus, OH',
+INSERT INTO open_positions (job_title, company_name,city_state, application_link) VALUES ('Associate Software Engineer', 'McKesson', 'Columbus, OH',
 '<a href="https://www.careerbuilder.com/job/J3V2316Y59WHT6Y4QR2?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply" target="_blank">Apply here</a>');
 
 --populate default data
@@ -216,6 +216,8 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('Robert','J
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('Nancy','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 GO
+
+
 
 
 declare @bob varchar(150)
