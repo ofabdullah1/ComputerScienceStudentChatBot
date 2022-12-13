@@ -97,6 +97,8 @@ export default {
   border-style: solid;
   border-color: black;
   box-shadow: 5px 5px 5px black;
+  text-align: center;
+  height: auto;
 }
 .client {
   background-color: #5b42f3;
@@ -110,15 +112,16 @@ export default {
   border-style: solid;
   border-color: black;
   box-shadow: 5px 5px 5px black;
-}
-.chat-box-list > li {
   text-align: center;
   height: auto;
 }
+
 .chat-box-list {
   padding: 0px;
 }
 .client > p {
+  text-align: center;
+  height: auto;
   margin: 0 auto;
   width: 90%;
   color: #fff;

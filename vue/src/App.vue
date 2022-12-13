@@ -5,10 +5,10 @@
       <h1 class="title">Welcome to the TE Digital Assistant</h1>
       <div id="nav">
         <router-link class="button" v-bind:to="{name:'home'}">Home</router-link> 
-           <router-link class="button" v-bind:to="{name:'about'}">About</router-link>
+           <router-link class="button" v-bind:to="{name:'about'}">Team</router-link>
         </div>
     </div>
-    <router-view id="home" />
+    <router-view id="view" />
     <footer id="footer">Copyright &copy; 2022, Team Oscar</footer>
   </div>
 </template>
@@ -30,7 +30,7 @@
   padding: 0px;
   margin: 0px;
 }
-#home {
+#view {
   grid-area: chatbot;
   display: flex;
   justify-content: center;

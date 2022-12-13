@@ -46,7 +46,7 @@ namespace Capstone.Utilities
             {
                 message.Context = "pathway2";
             }
-            else if (message.Message.Contains("positions") || message.Message.Contains("jobs"))
+            else if (message.Message.Contains("positions") || message.Message.Contains("jobs") || message.Message.Contains("position"))
             {
                 message.Context = "positions1";
             }
