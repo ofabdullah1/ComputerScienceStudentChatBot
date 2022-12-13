@@ -12,11 +12,9 @@ namespace Capstone.DAO
     {
         private string connectionString;
 
-        private string sqlGetJobByTitle = "SELECT position_id, job_title, company_name, application_link FROM " +
-            "open_positions WHERE @job_title like '%' + job_title + '%'";
+        private string sqlGetJobByTitle = "SELECT TOP 3 * FROM open_positions WHERE job_title Like '%@job_title%' ORDER BY newid();";
 
-        private string sqlGetJobByLocation = "SELECT Top 3 * FROM open_positions Where city_state like @city_state% " +
-            "OR city_state like %@city_state OR @city_state LIKE '%' + city_state + '%' ORDER BY newid();";
+        private string sqlGetJobByLocation = "SELECT TOP 3 * FROM open_positions WHERE @city_state Like '%' + city_state + '%' ORDER BY newid();";
 
 
 
@@ -25,9 +23,9 @@ namespace Capstone.DAO
             this.connectionString = connectionString;
         }
 
-        public JobPosition GetJobPostingByTitle(UserMessage message)
+        public List<JobPosition> GetJobPostingsByTitle(UserMessage message)
         {
-            JobPosition response = new JobPosition();
+            List<JobPosition> jobs = new List<JobPosition>();
 
             try
             {
@@ -41,8 +39,9 @@ namespace Capstone.DAO
 
                     while (reader.Read())
                     {
-
-                        response = ReaderToJobPosting(reader);
+                        JobPosition job = new JobPosition();
+                        job = ReaderToJobPosting(reader);
+                        jobs.Add(job);
 
                     }
 
@@ -52,15 +51,15 @@ namespace Capstone.DAO
             }
             catch (Exception ex)
             {
-                response = new JobPosition();
+                JobPosition job = new JobPosition();
             }
-            return response;
+            return jobs;
 
         }
 
-        public JobPosition GetJobPostingByLocation(UserMessage message)
+        public List<JobPosition> GetJobPostingsByLocation(UserMessage message)
         {
-            JobPosition response = new JobPosition();
+            List<JobPosition> jobs = new List<JobPosition>();
 
             try
             {
@@ -68,13 +67,15 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sqlGetJobByLocation, conn);
-                    //cmd.Parameters.AddWithValue("@city_state", message.Message);
+                    cmd.Parameters.AddWithValue("@city_state", message.Message);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        response = ReaderToJobPosting(reader);
+                        JobPosition job = new JobPosition();
+                        job = ReaderToJobPosting(reader);
+                        jobs.Add(job);
 
                     }
 
@@ -84,9 +85,9 @@ namespace Capstone.DAO
             }
             catch (Exception ex)
             {
-                response = new JobPosition();
+                JobPosition job = new JobPosition();
             }
-            return response;
+            return jobs;
 
         }
 

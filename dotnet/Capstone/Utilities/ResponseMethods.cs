@@ -100,13 +100,20 @@ namespace Capstone.Utilities
                              $"<li>Positions</li>";
         }
 
-        public static string ReturnJob(JobPosition job)
+        public static string ReturnJobs(List<JobPosition> jobs)
         {
+            string returnMessage = "";
+            foreach(JobPosition job in jobs)
+            {
+                returnMessage +=
+                 $"<h3>{job.Title}</h3>" +
+                 $"<h4>{job.Company}</h4>" +
+                 $"<p>{job.Link}</p>" +
+                 $"-------------------------------------";
+            }
+                returnMessage += $"<p>Tell me \"done\" at any point to stop searching for jobs.</p>";
+            return returnMessage;
 
-            return $"<h3>{job.Title}</h3>" +
-                $"<h4>{job.Company}</h4>" +
-                $"<p>{job.Link}</p>" +
-                $"<p>Tell me \"done\" at any point to stop searching for jobs.</p>";
 
         }
 

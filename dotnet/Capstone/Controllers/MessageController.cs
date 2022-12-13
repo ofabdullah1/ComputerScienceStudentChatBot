@@ -97,8 +97,8 @@ namespace Capstone.Controllers
                     returnMessage = ResponseMethods.AskForLocation(message);
                     break;
                 case "getJobsLocation":
-                    JobPosition job = jobDAO.GetJobPostingByLocation(message);
-                    returnMessage.Message = ResponseMethods.ReturnJob(job);
+                    List<JobPosition> jobs = jobDAO.GetJobPostingsByLocation(message);
+                    returnMessage.Message = ResponseMethods.ReturnJobs(jobs);
                     break;
                 case "positionsTitle":
                     //JobPosition job = jobDAO.GetJobPostingByTitle(message);

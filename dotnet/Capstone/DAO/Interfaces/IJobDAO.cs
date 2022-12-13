@@ -8,8 +8,8 @@ namespace Capstone.DAO.Interfaces
 {
     public interface IJobDAO
     {
-        JobPosition GetJobPostingByLocation(UserMessage message);
-        JobPosition GetJobPostingByTitle(UserMessage message);
+        List<JobPosition> GetJobPostingsByLocation(UserMessage message);
+        List<JobPosition> GetJobPostingsByTitle(UserMessage message);
        
     }
 }
