@@ -41,7 +41,7 @@ namespace Capstone.Controllers
                     returnMessage.Message = ResponseMethods.ReturnGreeting(message);
                     break;
                 case "help":
-                    returnMessage.Message = ResponseMethods.ReturnHelp(message);
+                    returnMessage.Message = ResponseMethods.ReturnHelp(message) + ResponseMethods.ReturnCategories();  
                     break;
                 case "quote":
                     Quote quote = quoteDAO.GetQuote();

@@ -46,7 +46,7 @@ namespace Capstone.Utilities
             {
                 message.Context = "pathway2";
             }
-            else if (message.Message.Contains("positions") || message.Message.Contains("jobs") || message.Message.Contains("position"))
+            else if (message.Message.Contains("positions") || message.Message.Contains("jobs") || message.Message.Contains("position") || message.Message.Contains("job"))
             {
                 message.Context = "positions1";
             }
@@ -96,7 +96,7 @@ namespace Capstone.Utilities
                 $"<li>Where can I learn about X</li>" +
                 $"<li>I don’t understand X</li> " +
                 $"<li>What is X</li> </br>" +
-                $"or you can try using words or phrases.</p> ";
+                $"or you can try using words or phrases.</p>";
         }
 
         public static string ReturnCategories()
