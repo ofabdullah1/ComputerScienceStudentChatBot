@@ -5,19 +5,19 @@
       <div class="team-headshots">
         <div class="person">
         <img id="headshot" src="https://ca.slack-edge.com/T0GNFLF6D-U03SCRLCK6K-3c6e69476d55-512" alt="Keiko">
-        <a href="https://www.linkedin.com/in/keikosjostrom/" target="_blank">Keiko Sjostrom</a>
+        <a class="anchor" href="https://www.linkedin.com/in/keikosjostrom/" target="_blank">Keiko Sjostrom</a>
         </div>
         <div class="person">
         <img id="headshot" src="https://ca.slack-edge.com/T0GNFLF6D-U03SLQDJ64W-dfe69015d08a-512" alt="Omar">
-        <a href="https://www.linkedin.com/in/ofabdullah1/" target="_blank">Omar Abdullah</a>
+        <a class="anchor" href="https://www.linkedin.com/in/ofabdullah1/" target="_blank">Omar Abdullah</a>
         </div>
         <div class="person">
         <img id="headshot" src="https://ca.slack-edge.com/T0GNFLF6D-U03T62ATR0R-dbbabe093f1c-512" alt="Kate">
-        <a href="https://www.linkedin.com/in/kate-karpenkova/" target="_blank">Ekaterina Karpenkova</a>
+        <a class="anchor" href="https://www.linkedin.com/in/kate-karpenkova/" target="_blank">Ekaterina Karpenkova</a>
         </div>
         <div class="person">
         <img id="headshot" src="https://ca.slack-edge.com/T0GNFLF6D-U03STADP11R-69aa13899cb2-512" alt="Parker">
-        <a href="https://www.linkedin.com/in/parker-crook/" target="_blank">Parker Crook</a>
+        <a class="anchor" href="https://www.linkedin.com/in/parker-crook/" target="_blank">Parker Crook</a>
         </div>
       </div>
      </div>
@@ -57,7 +57,7 @@ export default {
   margin-left: 15px;
 }
 #headshot {
-  max-width: 90%;
+  max-width: 80%;
   border-style: solid;
 }
 .team-names {
@@ -74,11 +74,11 @@ export default {
   font-family: "Audiowide", sans-serif;
   color: black;
 }
-a {
+.anchor {
   text-decoration: none;
   margin-top: 20px;
   color: black;
-  font-size: 25px;
+  font-size: 3vh;
 }
 
 </style>

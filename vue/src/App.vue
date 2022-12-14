@@ -99,4 +99,7 @@
   max-width: 200px;
   margin-left: 20px;
 }
+a {
+  text-decoration: none;
+}
 </style>

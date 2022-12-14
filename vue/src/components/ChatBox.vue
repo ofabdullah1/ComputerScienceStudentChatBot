@@ -99,7 +99,9 @@ export default {
   box-shadow: 5px 5px 5px black;
   text-align: center;
   height: auto;
+  animation: fadeIn 1s;
 }
+
 .client {
   background-color: #5b42f3;
   border-radius: 40px;
@@ -147,5 +149,10 @@ export default {
 }
 li {
   list-style-type: none;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 </style>
